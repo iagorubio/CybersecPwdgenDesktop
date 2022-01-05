@@ -21,9 +21,8 @@ If you can't find qmake in your system you can use QtCreator to build the projec
 
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. 
 
-Please make sure to update tests as appropriate.
 ## Web version
 
 There is a javascript version available on a separate repository to embed it in your webpage or use locally in your browser.
