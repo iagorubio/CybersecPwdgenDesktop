@@ -25,7 +25,7 @@ Pull requests are welcome.
 
 ## Web version
 
-There is a javascript version available on a separate repository to embed it in your webpage or use locally in your browser.
+There is a [javascript version](https://github.com/iagorubio/CybersecPwdgen) available on a separate repository to embed it in your webpage or use locally in your browser.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
