@@ -49,17 +49,17 @@ QString Dialog::Shuffle(QString str){
     }
     return result;
 }
-QString Dialog::GetRandomString(bool chars, bool capitals, bool sym, int length)
+QString Dialog::GetRandomString(bool chars, bool capitals, bool sym, int length, int symbols)
 {
-   const QString numbers("012345678901234567890123456789");
-   const QString lowercase("abcdefghjklmnpqrstuvwxyz");
-   const QString uppercase("ABCDEFGHJKLMNPQRSTUVWXYZ");
-   const QString symbols("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"); // https://owasp.org/www-community/password-special-characters, minus whitespace
-   //const QString symbols_AD_OI_safe("@%+\\/'!$^?:.(){}[]~`-_."); //AD and Oracle Identity safe
+   const QString numbers("012345678901234567890123456789012345678901234567890123456789");
+   const QString lowercase("abcdefghjklmnpqrstuvwxyzabcdefghjklmnpqrstuvwxyzabcdefghjklmnpqrstuvwxyz");
+   const QString uppercase("ABCDEFGHJKLMNPQRSTUVWXYZABCDEFGHJKLMNPQRSTUVWXYZABCDEFGHJKLMNPQRSTUVWXYZ");
+   const QString symbolsOwasp("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"); // https://owasp.org/www-community/password-special-characters, minus whitespace
+   const QString symbols_AsOi("@%+\\/'!$^?:.(){}[]~`-_.@%+\\/'!$^?:.(){}[]~`-_.@%+\\/'!$^?:.(){}[]~`-_."); //AD and Oracle Identity safe
 
    QList<QString>  list;
 
-   length = (length + 1) * 5;
+   length = (length + 1) * 8;
 
    list.append(this->Shuffle(numbers));
 
@@ -70,7 +70,10 @@ QString Dialog::GetRandomString(bool chars, bool capitals, bool sym, int length)
        list.append(this->Shuffle(uppercase));
    }
    if( sym ){
-       list.append(this->Shuffle(symbols));
+        if( symbols == 0 )
+            list.append(this->Shuffle(symbolsOwasp));
+        else
+            list.append(this->Shuffle(symbols_AsOi));
    }
 
    QString randomString;
@@ -96,8 +99,9 @@ void Dialog::on_pushButton_createPwd_clicked()
     bool bUppercase = ui->checkBox_Upercase->isChecked();
     bool bSymbols = ui->checkBox_symbols->isChecked();
     int sizeIndex = ui->comboBox_size->currentIndex();
+    int symbolIndex = ui->comboBox_symbols->currentIndex();
 
-    ui->passwordOutputText->setText(GetRandomString(bLowercase, bUppercase, bSymbols, sizeIndex));
+    ui->passwordOutputText->setText(GetRandomString(bLowercase, bUppercase, bSymbols, sizeIndex, symbolIndex));
 }
 
 
