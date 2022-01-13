@@ -21,39 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "dialog.h"
-#include "ui_dialog.h"
-#include <QtMath>
-#include <QRandomGenerator>
+
+#ifndef CPASSWORDGENERATOR_H
+#define CPASSWORDGENERATOR_H
+
+#include <QString>
 #include <QList>
+#include <QRandomGenerator>
 
-Dialog::Dialog(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::Dialog)
+#define SYMBOLS_OWASP 0
+#define SYMBOLS_AD_OI 1
+
+class CPasswordGenerator
 {
-    ui->setupUi(this);
-    passwordGenerator = new CPasswordGenerator();
-}
+public:
+    CPasswordGenerator();
+    QString GetRandomString(bool,  bool,  bool , int , int  );
 
-Dialog::~Dialog()
-{
-    delete ui;
-}
+private:
+    QString Shuffle(QString str);
+};
 
-void Dialog::on_pushButton_createPwd_clicked()
-{
-    bool bLowercase = ui->checkBox_Lowercase->isChecked();
-    bool bUppercase = ui->checkBox_Upercase->isChecked();
-    bool bSymbols = ui->checkBox_symbols->isChecked();
-    int sizeIndex = ui->comboBox_size->currentIndex();
-    int symbolIndex = ui->comboBox_symbols->currentIndex();
-
-    ui->passwordOutputText->setText(passwordGenerator->GetRandomString(bLowercase, bUppercase, bSymbols, sizeIndex, symbolIndex));
-}
-
-
-void Dialog::on_pushButton_Close_clicked()
-{
-    close();
-}
-
+#endif // CPASSWORDGENERATOR_H

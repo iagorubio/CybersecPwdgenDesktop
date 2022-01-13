@@ -25,6 +25,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include "cpasswordgenerator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
@@ -39,13 +40,11 @@ class Dialog : public QDialog
 public:
     Dialog(QWidget *parent = nullptr);
     ~Dialog();
-    QString GetRandomString(bool,  bool,  bool , int , int  );
 private slots:
     void on_pushButton_createPwd_clicked();
     void on_pushButton_Close_clicked();    
-    QString Shuffle(QString str);
-
 private:
     Ui::Dialog *ui;
+    CPasswordGenerator *passwordGenerator;
 };
 #endif // DIALOG_H

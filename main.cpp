@@ -34,7 +34,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Dialog w;
+    Dialog w;    
+    w.setWindowFlags(Qt::Window);
+    w.setWindowFlags(w.windowFlags() & (~Qt::WindowMaximizeButtonHint));
     w.show();
     return a.exec();
 }
