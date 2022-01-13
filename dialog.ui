@@ -23,10 +23,15 @@
    </size>
   </property>
   <property name="cursor">
-   <cursorShape>UpArrowCursor</cursorShape>
+   <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>Cybersec Pwdgen (c) Yago Rubio</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="default.qrc">
+    <normaloff>:/assets/general/icon.svg</normaloff>
+    <normalon>:/assets/general/icon.svg</normalon>:/assets/general/icon.svg</iconset>
   </property>
   <property name="modal">
    <bool>false</bool>
@@ -212,6 +217,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="default.qrc"/>
+ </resources>
  <connections/>
 </ui>
